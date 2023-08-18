@@ -1,4 +1,56 @@
-<!-- Import the component -->
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+<head>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
 
-<model-viewer src="window_bedford_blue_2048.glb" ar ar-placement="wall" camera-controls touch-action="pan-y" alt="A 3D model of some wall art"></model-viewer>
+<body>
+    <model-viewer id="model" camera-controls touch-action="pan-y" interaction-prompt="none"
+        src="window_bedford_blue_2048.glb" ar alt="A 3D model of an astronaut" style="width: 50%; height: 50%;">
+        <!-- // -->
+        <div class="controls" id="color-controls">
+            <div id="1" style="background-color: #523032;" class="color"></div>
+            <div id="2" style="background-color: #2D3F3B;" class="color"></div>
+            <div id="3" style="background-color: #344557;" class="color"></div>
+            <div id="4" style="background-color: #414144;" class="color"></div>
+            <div id="5" style="background-color: #151114;" class="color"></div>
+            <div id="6" style="background-color: #ECEBEA;" class="color"></div>
+        </div>
+    </model-viewer>
+    <script>
+        const modelViewerParameters = document.querySelector("model-viewer#model");
+
+
+        document.querySelector('#color-controls').addEventListener('click', (event) => {
+            const model = document.getElementById('model')
+            console.log(event.target.id)
+            switch (event.target.id) {
+                case '1':
+                    model.src = "window_burgundy_2048.glb"
+                    break;
+                case '2':
+                    model.src = "window_heritage_green_2048.glb"
+                    break;
+                case '3':
+                    model.src = "window_bedford_blue_2048.glb"
+                    break;
+                case '4':
+                    model.src = "window_dark_gray_2048.glb"
+                    break;
+                case '5':
+                    model.src = "window_black_2048.glb"
+                    break;
+                case '6':
+                    model.src = "window_white_2048.glb"
+                case 'color-controls':
+                    console.log(".")
+                    break;
+                default:
+                    model.src = "window_white_2048.glb"
+            }
+            const material = modelViewerParameters.model.materials[0];
+            material.pbrMetallicRoughness.setMetallicFactor(0);
+            material.pbrMetallicRoughness.setRoughnessFactor(1);
+        });
+    </script>
+</body>

@@ -1,0 +1,19 @@
+.color {
+    width: 40px;
+    margin: 10px;
+    height: 40px;
+}
+
+body {
+    background-color: lightblue;
+}
+
+#colors {
+    flex-direction: row;
+    position: inherit;
+    display: flex;
+}
+
+.selected {
+    outline: 4px dashed red;
+}
