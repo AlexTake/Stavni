@@ -5,7 +5,8 @@
 </head>
 
 <body>
-    <model-viewer id="model" camera-controls src="window_bedford_blue_2048.glb" ar alt="Stavni" style="width: 50%; height: 50%;">
+    <model-viewer id="model" camera-controls src="window_bedford_blue_2048.glb" ios-src="blue.usdz" ar alt="Stavni"
+        style="width: 50%; height: 50%;">
         <!-- // -->
         <div class="controls" id="color-controls" style="width: 60px;">
             <div id="1" style="background-color: #523032;" class="color"></div>
@@ -17,39 +18,44 @@
         </div>
     </model-viewer>
     <script>
-        const modelViewerParameters = document.querySelector("model-viewer#model");
-
-
         document.querySelector('#color-controls').addEventListener('click', (event) => {
             const model = document.getElementById('model')
             console.log(event.target.id)
             switch (event.target.id) {
                 case '1':
                     model.src = "window_burgundy_2048.glb"
+                    model.setAttribute('ios-src', 'burgundy.usdz')
                     break;
                 case '2':
                     model.src = "window_heritage_green_2048.glb"
+                    model.setAttribute('ios-src', 'heritage_green.usdz')
                     break;
                 case '3':
                     model.src = "window_bedford_blue_2048.glb"
+                    model.setAttribute('ios-src', 'blue.usdz')
                     break;
                 case '4':
                     model.src = "window_dark_gray_2048.glb"
+                    model.setAttribute('ios-src', 'dark-gray.usdz')
                     break;
                 case '5':
                     model.src = "window_black_2048.glb"
+                    model.setAttribute('ios-src', 'black.usdz')
                     break;
                 case '6':
                     model.src = "window_white_2048.glb"
+                    model.setAttribute('ios-src', 'white.usdz')
                 case 'color-controls':
                     console.log(".")
                     break;
                 default:
                     model.src = "window_white_2048.glb"
+                    model.setAttribute('ios-src', 'white.usdz')
             }
-            const material = modelViewerParameters.model.materials[0];
-            material.pbrMetallicRoughness.setMetallicFactor(0);
-            material.pbrMetallicRoughness.setRoughnessFactor(1);
+            //const modelViewerParameters = document.querySelector("model-viewer#model");
+            // const material = modelViewerParameters.model.materials[0];
+            // material.pbrMetallicRoughness.setMetallicFactor(0);
+            // material.pbrMetallicRoughness.setRoughnessFactor(1);
         });
     </script>
 </body>
