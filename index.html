@@ -8,19 +8,22 @@
     <img id="arBtn" src="assets/image/ar.png" />
     <div id="bg" class="bg">
         <div id="modal">
-            <model-viewer id="model" camera-controls src="assets/model/window_bedford_blue_2048.glb"
+            <model-viewer id="model" camera-controls src="assets/model/default.glb" animation-name="baseAction.002"
                 ios-src="assets/model/blue.usdz" ar ar-placement="wall" alt="3D Model">
                 <button slot="ar-button" id="ar-button">
                     View in your space
                 </button>
+                <button id="anim-button">
+                    Animation
+                </button>
             </model-viewer>
             <div class="controls" id="color-controls">
-                <div id="1"  style="background-color: #523032;" class="color"></div>
-                <div id="2"  style="background-color: #2D3F3B;" class="color"></div>
-                <div id="3"  style="background-color: #344557;" class="color"></div>
-                <div id="4"  style="background-color: #414144;" class="color"></div>
-                <div id="5"  style="background-color: #151114;" class="color"></div>
-                <div id="6"  style="background-color: #ECEBEA;" class="color"></div>
+                <div id="1" style="background-color: #523032;" class="color"></div>
+                <div id="2" style="background-color: #2D3F3B;" class="color"></div>
+                <div id="3" style="background-color: #344557;" class="color"></div>
+                <div id="4" style="background-color: #414144;" class="color"></div>
+                <div id="5" style="background-color: #151114;" class="color"></div>
+                <div id="6" style="background-color: #ECEBEA;" class="color"></div>
             </div>
             <div id="qrcode"></div>
             <div id="disclaimer">The AR feature is designed to offer a rough visualization of product appearance in your
@@ -59,6 +62,18 @@
         }
         else {
             document.getElementById('disclaimer').style.display = 'flex'
+
+            document.getElementById('ar-button').addEventListener('click', () => {
+                document.getElementById('anim-button').style.display = 'flex'
+            })
+
+            document.getElementById('default-exit-webxr-ar-button').addEventListener('click', () => {
+                document.getElementById('anim-button').style.display = 'none'
+            })
+            const play = () => {
+                model.play({ repetitions: 1 });
+            };
+            document.getElementById('anim-button').addEventListener('click', play)
         }
 
         document.getElementById('arBtn').addEventListener('click', () => {
@@ -72,10 +87,6 @@
         })
 
 
-        document.getElementById('ar-button').addEventListener('click', () => {
-            const [material] = modelViewerColor.model.materials;
-            material.pbrMetallicRoughness.setBaseColorFactor
-        })
 
 
         document.querySelector('#color-controls').addEventListener('click', (event) => {
@@ -84,36 +95,27 @@
             const [material] = modelViewerColor.model.materials;
             material.pbrMetallicRoughness.setBaseColorFactor(colorString);
             switch (event.target.id) {
-
                 case '1':
-                    // model.setAttribute('src', 'assets/model/window_burgundy_2048.glb')
-
                     model.setAttribute('ios-src', 'assets/model/burgundy.usdz')
                     break;
                 case '2':
-                    // model.setAttribute('src', 'assets/model/window_heritage_green_2048.glb')
                     model.setAttribute('ios-src', 'assets/model/heritage_green.usdz')
                     break;
                 case '3':
-                    //  model.setAttribute('src', 'assets/model/window_bedford_blue_2048.glb')
                     model.setAttribute('ios-src', 'assets/model/blue.usdz')
                     break;
                 case '4':
-                    // model.setAttribute('src', 'assets/model/window_dark_gray_2048.glb')
                     model.setAttribute('ios-src', 'assets/model/dark-gray.usdz')
                     break;
                 case '5':
-                    // model.setAttribute('src', 'assets/model/window_black_2048.glb')
                     model.setAttribute('ios-src', 'assets/model/black.usdz')
                     break;
                 case '6':
-                    // model.setAttribute('src', 'assets/model/window_white_2048.glb')
                     model.setAttribute('ios-src', 'assets/model/white.usdz')
                 case 'color-controls':
                     console.log(".")
                     break;
                 default:
-                    // model.setAttribute('src', 'assets/model/window_white_2048.glb')
                     model.setAttribute('ios-src', 'assets/model/white.usdz')
             }
         });

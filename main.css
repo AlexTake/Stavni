@@ -36,6 +36,23 @@ body {
     border-radius: 18px;
     border: 1px solid #DADCE0;
 }
+#anim-button {
+    background-color: #dbdbdb;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    bottom: 50px;
+    padding: 0px 15px;
+    font-family: Roboto Regular, Helvetica Neue, sans-serif;
+    font-size: 24px;
+    color: #4285f4;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 18px;
+    border: 1px solid #DADCE0;
+    display: none;
+}
 
 #color-controls {
     flex-direction: row;
