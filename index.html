@@ -14,7 +14,7 @@
                     View in your space
                 </button>
                 <button id="anim-button">
-                    Animation
+                    Add Shutters
                 </button>
             </model-viewer>
             <div class="controls" id="color-controls">
@@ -67,12 +67,15 @@
                 model.play({ repetitions: 1 });
             };
 
-            document.getElementById('anim-button').addEventListener('click', play)
+            document.getElementById('anim-button').addEventListener('click', () => {
+                document.getElementById('anim-button').style.display = 'none'
+                play
+            })
 
             model.addEventListener('ar-status', (event) => {
                 if (event.detail.status == "session-started")
                     document.getElementById('anim-button').style.display = 'flex'
-                else {
+                else if (event.detail.status == "not-presenting") {
                     document.getElementById('anim-button').style.display = 'none'
                     model.currentTime = 0;
                     model.pause();
