@@ -59,8 +59,11 @@
                 correctLevel: QRCode.CorrectLevel.H
             });
             modal.style.width = "50%"
+            modal.style.height = "80%"
         }
         else {
+            document.getElementById('closeBtn').style.right = '50px';
+            document.getElementById('closeBtn').style.top = '50px';
             document.getElementById('disclaimer').style.display = 'flex'
 
             document.getElementById('anim-button').addEventListener('click', () => {
