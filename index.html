@@ -1,14 +1,21 @@
 <head>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
-    <script src="index.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
-    <model-viewer id="model" camera-controls src="window_bedford_blue_2048.glb" ios-src="blue.usdz" ar alt="Stavni"
-        style="width: 50%; height: 50%;">
-        <!-- // -->
-        <div class="controls" id="color-controls" style="width: 60px;">
+    <img id="arBtn" src="assets/image/ar.png" />
+    <div id="modal">
+        <model-viewer id="model" camera-controls src="assets/model/window_bedford_blue_2048.glb"
+            ios-src="assets/model/blue.usdz" ar ar-placement="wall" alt="3D Model">
+            <button slot="ar-button" id="ar-button">
+                View in your space
+            </button>
+            <div id="disclaimer">The AR feature is designed to offer a rough visualization of product appearance in your
+                space; real dimensions may vary.</div>
+        </model-viewer>
+        <div class="controls" id="color-controls">
             <div id="1" style="background-color: #523032;" class="color"></div>
             <div id="2" style="background-color: #2D3F3B;" class="color"></div>
             <div id="3" style="background-color: #344557;" class="color"></div>
@@ -16,66 +23,80 @@
             <div id="5" style="background-color: #151114;" class="color"></div>
             <div id="6" style="background-color: #ECEBEA;" class="color"></div>
         </div>
-        <button slot="ar-button" id="ar-button" style="  background-image: url(ar.png);
-        background-repeat: no-repeat;
-        background-size: 20px 20px;
-        background-position: 12px 50%;
-        background-color: #fff;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-        bottom: 132px;
-        padding: 0px 16px 0px 40px;
-        font-family: Roboto Regular, Helvetica Neue, sans-serif;
-        font-size: 14px;
-        color:#4285f4;
-        height: 36px;
-        line-height: 36px;
-        border-radius: 18px;
-        border: 1px solid #DADCE0;">
-            View in your space
-        </button>
-    </model-viewer>
+        <div id="qrcode"></div>
+        <img id="closeBtn" src="assets/image/close.png" />
+    </div>
     <script>
+        const model = document.getElementById('model')
+        const modal = document.getElementById('modal')
+        let isMobile;
+        if (navigator.userAgent.match(/Android/i)
+            || navigator.userAgent.match(/webOS/i)
+            || navigator.userAgent.match(/iPhone/i)
+            || navigator.userAgent.match(/iPad/i)
+            || navigator.userAgent.match(/iPod/i)
+            || navigator.userAgent.match(/BlackBerry/i)
+            || navigator.userAgent.match(/Windows Phone/i)) {
+            isMobile = true;
+        } else {
+            isMobile = false;
+        }
+        if (!isMobile) {
+            new QRCode(document.getElementById("qrcode"), {
+                text: "https://www.google.com/",
+                width: 512,
+                height: 512,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            modal.style.width = "50%"
+        }
+        else {
+            document.getElementById('disclaimer').style.display = 'flex'
+        }
+
+        document.getElementById('arBtn').addEventListener('click', () => {
+            modal.style.display = 'flex'
+        })
+
+        document.getElementById('closeBtn').addEventListener('click', () => {
+            modal.style.display = 'none'
+        })
+
         document.querySelector('#color-controls').addEventListener('click', (event) => {
-            const model = document.getElementById('model')
-            console.log(event.target.id)
             switch (event.target.id) {
                 case '1':
-                    model.src = "window_burgundy_2048.glb"
-                    model.setAttribute('ios-src', 'burgundy.usdz')
+                    model.setAttribute('src', 'assets/model/window_burgundy_2048.glb')
+                    model.setAttribute('ios-src', 'assets/model/burgundy.usdz')
                     break;
                 case '2':
-                    model.src = "window_heritage_green_2048.glb"
-                    model.setAttribute('ios-src', 'heritage_green.usdz')
+                    model.setAttribute('src', 'assets/model/window_heritage_green_2048.glb')
+                    model.setAttribute('ios-src', 'assets/model/heritage_green.usdz')
                     break;
                 case '3':
-                    model.src = "window_bedford_blue_2048.glb"
-                    model.setAttribute('ios-src', 'blue.usdz')
+                    model.setAttribute('src', 'assets/model/window_bedford_blue_2048.glb')
+                    model.setAttribute('ios-src', 'assets/model/blue.usdz')
                     break;
                 case '4':
-                    model.src = "window_dark_gray_2048.glb"
-                    model.setAttribute('ios-src', 'dark-gray.usdz')
+                    model.setAttribute('src', 'assets/model/window_dark_gray_2048.glb')
+                    model.setAttribute('ios-src', 'assets/model/dark-gray.usdz')
                     break;
                 case '5':
-                    model.src = "window_black_2048.glb"
-                    model.setAttribute('ios-src', 'black.usdz')
+                    model.setAttribute('src', 'assets/model/window_black_2048.glb')
+                    model.setAttribute('ios-src', 'assets/model/black.usdz')
                     break;
                 case '6':
-                    model.src = "window_white_2048.glb"
-                    model.setAttribute('ios-src', 'white.usdz')
+                    model.setAttribute('src', 'assets/model/window_white_2048.glb')
+                    model.setAttribute('ios-src', 'assets/model/white.usdz')
                 case 'color-controls':
                     console.log(".")
                     break;
                 default:
-                    model.src = "window_white_2048.glb"
-                    model.setAttribute('ios-src', 'white.usdz')
+                    model.setAttribute('src', 'assets/model/window_white_2048.glb')
+                    model.setAttribute('ios-src', 'assets/model/white.usdz')
             }
-            //const modelViewerParameters = document.querySelector("model-viewer#model");
-            // const material = modelViewerParameters.model.materials[0];
-            // material.pbrMetallicRoughness.setMetallicFactor(0);
-            // material.pbrMetallicRoughness.setRoughnessFactor(1);
         });
+
     </script>
 </body>
