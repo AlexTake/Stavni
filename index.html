@@ -62,20 +62,26 @@
         }
         else {
             document.getElementById('disclaimer').style.display = 'flex'
+
             const play = () => {
                 model.play({ repetitions: 1 });
             };
+
             document.getElementById('anim-button').addEventListener('click', play)
 
+            model.addEventListener('ar-status', (event) => {
+                if (event.detail.status == "session-started")
+                    document.getElementById('anim-button').style.display = 'flex'
+                else {
+                    document.getElementById('anim-button').style.display = 'none'
+                    model.currentTime = 0;
+                    model.pause();
+                }
+
+            });
         }
 
-        model.addEventListener('ar-status', (event) => {
-            if (event.detail.status == "session-started")
-                document.getElementById('anim-button').style.display = 'flex'
-            else
-                document.getElementById('anim-button').style.display = 'none'
 
-        });
         document.getElementById('arBtn').addEventListener('click', () => {
             modal.style.display = 'flex'
             bg.style.display = 'flex'
