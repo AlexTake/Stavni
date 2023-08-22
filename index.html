@@ -63,6 +63,15 @@
         document.getElementById('closeBtn').addEventListener('click', () => {
             modal.style.display = 'none'
         })
+        document.getElementById('ar-button').addEventListener('click', () => {
+            if (isMobile)
+                disclaimer.style.display = 'none'
+        })
+
+        document.getElementById('default-exit-webxr-ar-button').addEventListener('click', () => {
+            if (isMobile)
+                disclaimer.style.display = 'flex'
+        })
 
         document.querySelector('#color-controls').addEventListener('click', (event) => {
             switch (event.target.id) {
