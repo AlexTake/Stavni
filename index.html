@@ -43,7 +43,7 @@
         }
         if (!isMobile) {
             new QRCode(document.getElementById("qrcode"), {
-                text: "https://www.google.com/",
+                text: window.location.href,
                 width: 512,
                 height: 512,
                 colorDark: "#000000",
