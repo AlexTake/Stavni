@@ -63,13 +63,9 @@
         else {
             document.getElementById('disclaimer').style.display = 'flex'
 
-            const play = () => {
-                model.play({ repetitions: 1 });
-            };
-
             document.getElementById('anim-button').addEventListener('click', () => {
                 document.getElementById('anim-button').style.display = 'none'
-                play
+                model.play({ repetitions: 1 });
             })
 
             model.addEventListener('ar-status', (event) => {
