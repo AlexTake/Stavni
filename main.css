@@ -19,7 +19,7 @@ body {
 #ar-button {
     background-image: url(assets/image/ar.png);
     background-repeat: no-repeat;
-    background-size: 25px 25px;
+    background-size: 50px 50px;
     background-position: 12px 50%;
     background-color: #dbdbdb;
     position: absolute;
@@ -27,15 +27,16 @@ body {
     transform: translateX(-50%);
     white-space: nowrap;
     top: 50px;
-    padding: 0px 16px 0px 40px;
+    padding: 0px 16px 0px 75px;
     font-family: Roboto Regular, Helvetica Neue, sans-serif;
-    font-size: 24px;
+    font-size: 48px;
     color: #4285f4;
-    height: 36px;
+    height: 60px;
     line-height: 36px;
     border-radius: 18px;
     border: 1px solid #DADCE0;
 }
+
 #anim-button {
     background-color: #dbdbdb;
     position: absolute;
@@ -108,12 +109,12 @@ body {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 100px;
+    top: 125px;
     font-family: Roboto Regular, Helvetica Neue, sans-serif;
     color: red;
-    width: 70%;
+    width: 80%;
     text-align: center;
-    font-size: 16px;
+    font-size: 34px;
 }
 
 .bg {
