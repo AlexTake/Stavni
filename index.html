@@ -7,15 +7,15 @@
 <body>
     <img id="arBtn" src="assets/image/ar.png" />
     <div id="bg" class="bg">
-        <div id="modal">
-            <model-viewer id="model" camera-controls src="assets/model/default.glb" animation-name="baseAction.002"
-                ios-src="assets/model/blue.usdz" ar ar-placement="wall" alt="3D Model">
+        <div id="modal"> 
+            <model-viewer id="model" camera-controls src="assets/model/default.glb" ios-src="assets/model/blue.usdz" ar
+                ar-placement="wall" alt="3D Model"> <!-- animation-name="baseAction.002" -->
                 <button slot="ar-button" id="ar-button">
                     View in your space
                 </button>
-                <button id="anim-button">
+                <!-- <button id="anim-button">
                     Add Shutters
-                </button>
+                </button> -->
             </model-viewer>
             <div class="controls" id="color-controls">
                 <div id="1" style="background-color: #523032;" class="color"></div>
@@ -66,23 +66,22 @@
             document.getElementById('closeBtn').style.top = '50px';
             document.getElementById('disclaimer').style.display = 'flex'
 
-            document.getElementById('anim-button').addEventListener('click', () => {
-                document.getElementById('anim-button').style.display = 'none'
-                model.play({ repetitions: 1 });
-            })
+            // document.getElementById('anim-button').addEventListener('click', () => {
+            //     document.getElementById('anim-button').style.display = 'none'
+            //     model.play({ repetitions: 1 });
+            // })
 
-            model.addEventListener('ar-status', (event) => {
-                if (event.detail.status == "session-started")
-                    document.getElementById('anim-button').style.display = 'flex'
-                else if (event.detail.status == "not-presenting") {
-                    document.getElementById('anim-button').style.display = 'none'
-                    model.currentTime = 0;
-                    model.pause();
-                }
+            // model.addEventListener('ar-status', (event) => {
+            //     if (event.detail.status == "session-started")
+            //         document.getElementById('anim-button').style.display = 'flex'
+            //     else if (event.detail.status == "not-presenting") {
+            //         document.getElementById('anim-button').style.display = 'none'
+            //         model.currentTime = 0;
+            //         model.pause();
+            //     }
 
-            });
+            // });
         }
-
 
         document.getElementById('arBtn').addEventListener('click', () => {
             modal.style.display = 'flex'
